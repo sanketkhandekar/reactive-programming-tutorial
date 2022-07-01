@@ -1,7 +1,9 @@
 package com.codeonlyocde.reactiveprogrammingtutorial.services;
 
 import org.junit.jupiter.api.Test;
+import reactor.core.publisher.Hooks;
 import reactor.test.StepVerifier;
+import reactor.tools.agent.ReactorDebugAgent;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -238,9 +240,11 @@ class FluxMonoServicesTest {
     }
 
     @Test
-
     void fruitsFluxOnErrorMap() {
-        var fruitsFlux = fluxMonoServices.fruitsFluxOnErrorMap();
+       // Hooks.onOperatorDebug();
+        ReactorDebugAgent.init();
+        ReactorDebugAgent.processExistingClasses();
+        var fruitsFlux = fluxMonoServices.fruitsFluxOnErrorMap().log();
         StepVerifier.create(fruitsFlux)
                 .expectNext("APPLE")
                 .expectError(IllegalStateException.class)
