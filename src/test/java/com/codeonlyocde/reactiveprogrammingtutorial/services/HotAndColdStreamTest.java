@@ -36,5 +36,7 @@ public class HotAndColdStreamTest {
         publish.subscribe(integer -> System.out.println("subscribe  2= " + integer));
         Thread.sleep(10000);
 
+
+
     }
 }
