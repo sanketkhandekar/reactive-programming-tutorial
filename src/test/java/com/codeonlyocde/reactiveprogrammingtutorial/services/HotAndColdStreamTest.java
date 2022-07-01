@@ -29,7 +29,6 @@ public class HotAndColdStreamTest {
         ConnectableFlux<Integer> publish = numbers.publish();
 
         publish.connect();
-
         publish.subscribe(integer -> System.out.println("subscribe 1= " + integer));
         Thread.sleep(4000);
 
